@@ -189,3 +189,227 @@ config QSPI_DMA_SUPPORT
 	depends on XDMAC
 
 endmenu
+
+if !SPI_FLASH_CUSTOM
+menu "SPI Flash chips support"
+
+config SPI_FLASH_WINBOND
+	bool "Winbond NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_ATMEL
+	bool "Atmel NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_EON
+	bool "EON NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_GIGADEVICE
+	bool "GIGADEVICE NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_SST
+	bool "SST NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_ISSI
+	bool "ISSI NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_MACRONIX
+	bool "MACRONIX NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_STMICRO
+	bool "STMicro NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_SPANSIO
+	bool "Spansio NOR flash"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_XMC
+	bool "XMC NOR flash"
+	default n
+	help
+	  Add support for winbond
+endmenu
+endif
+
+menuconfig SPI_FLASH_CUSTOM
+	bool "Define custom SPI Flash"
+
+if SPI_FLASH_CUSTOM
+config SPI_FLASH_CUSTOM_NAME
+	string "SPI Flash custom name"
+	default ""
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_ID
+	hex "SPI Flash custom ID (hex)"
+	default ""
+	depends on SPI_FLASH_CUSTOM
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_EXT_ID
+	hex "SPI Flash custom ext ID (hex)"
+	default ""
+	depends on SPI_FLASH_CUSTOM
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SECTOR_SIZE
+	int "SPI Flash custom sector size"
+	default ""
+	depends on SPI_FLASH_CUSTOM
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_N_SECTORS
+	int "N Sectors"
+	default ""
+	depends on SPI_FLASH_CUSTOM
+	help
+	  Add support for winbond
+
+menuconfig SPI_FLASH_FLAGS
+	bool "SPI Flash flags"
+
+if SPI_FLASH_FLAGS
+config SPI_FLASH_CUSTOM_SECT_4K
+	bool "Sector 4K"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_NO_ERASE
+	bool "SPI NOR no erase"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SST_WRITE
+	bool "SST write"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_NO_FR
+	bool "SPI NOR no fr"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SECT_4K_PMC
+	bool "Sector 4k PMC"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_DUAL_READ
+	bool "SPI NOR dual read"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_QUAD_READ
+	bool "SPI NOR quad read"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_USE_FSR
+	bool "Use fsr"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_HAS_LOCK
+	bool "SPI NOR has lock"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_HAS_TB
+	bool "SPI NOR has tb"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_S3AN
+	bool "SPI s3an"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_4B_OPCODES
+	bool "SPI NOR 4B opcodes"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_NO_CHIP_ERASE
+	bool "No chip erase"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_SKIP_SFDP
+	bool "SPI NOR skip sfdp"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_USE_CLSR
+	bool "Use clsr"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_HAS_SST26LOCK
+	bool "SPI NOR has sst26lock"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SPI_NOR_OCTAL_READ
+	bool "SPI NOR octal read"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_UNLOCK_GLOBAL_BLOCK
+	bool "Unlock global block"
+	default n
+	help
+	  Add support for winbond
+
+config SPI_FLASH_CUSTOM_SECT_4K_ONLY
+	bool "Sector 4K only"
+	default n
+	help
+	  Add support for winbond
+endif
+
+endif
