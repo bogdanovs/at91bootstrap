@@ -597,6 +597,7 @@ config DDR_DRIVER_IMPEDANCE
 	int "DDR output impedance select(ohms)"
 	default 40 if DDR_AS4C256M16D3LC_12BCNTR
 	default 40 if DDR_MT41K512M16HA_125
+	default 40 if DDR_IS43TR81024BL_125KBLI
 	default 40 if DDR_MT47H128M16RT_25E_C
 	default 40 if DDR_W9751G6NB
 	default 48 if DDR_IS43LD16128B_25BLI
@@ -620,6 +621,7 @@ config DDR_ODT_IMPEDANCE
 	int "DDR on-die impedance select(ohms)"
 	default 60 if DDR_AS4C256M16D3LC_12BCNTR
 	default 60 if DDR_MT41K512M16HA_125
+	default 120 if DDR_IS43TR81024BL_125KBLI
 	default 60 if DDR_MT41K128M16JT_125
 	default 60 if DDR_W631GU6NB12I
 	default 60 if DDR_W632GU6NB12I
