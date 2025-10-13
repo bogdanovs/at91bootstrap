@@ -331,6 +331,12 @@
 	#define NB_COL_BITS	10
 	#define PAGE_SIZE	2
 #endif
+#ifdef CONFIG_DDR_16_GBIT
+	#define TRFC		350000
+	#define NB_ROW_BITS	16
+	#define NB_COL_BITS	11
+	#define PAGE_SIZE	2
+#endif
 
 #define NB_BANK_BITS		3
 #if defined(DDR3_SPEED_800)

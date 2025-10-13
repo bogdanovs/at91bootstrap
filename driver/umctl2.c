@@ -1103,7 +1103,9 @@ int umctl2_init (struct umctl2_config_state *state)
 unsigned int get_ddram_size(void)
 {
 
-#if defined(CONFIG_DDR_8_GBIT)
+#if defined(CONFIG_DDR_16_GBIT)
+	return 0x80000000;
+#elif defined(CONFIG_DDR_8_GBIT)
 	return 0x40000000;
 #elif defined(CONFIG_DDR_4_GBIT)
 	return 0x20000000;
