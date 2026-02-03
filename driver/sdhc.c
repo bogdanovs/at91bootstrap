@@ -528,6 +528,10 @@ static int sdhc_host_capability(struct sd_card *sdcard)
 	if (caps & SDMMC_CA1R_DDR50SUP)
 		host->caps_ddr = 1;
 
+#ifdef CONFIG_SDHC_EMMC_HS_DDR
+	host->caps_ddr = 1;
+#endif
+
 #ifdef CONFIG_SDHC_UHS
 	if ((host->caps_voltages | SD_OCR_VDD_165_195) &&
 		(host->caps_bus_width | BUS_WIDTH_4_BIT) &&

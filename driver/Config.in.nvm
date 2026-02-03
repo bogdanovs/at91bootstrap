@@ -155,6 +155,13 @@ config SDHC_8BIT_SUPPORT
 	  will not configure SDHC lines 4-7 in SDHC mode, and they can be
 	  used for another interface.
 
+config SDHC_EMMC_HS_DDR
+	bool "Support e.MMC high-speed DDR mode"
+	depends on SDHC
+	default n
+	help
+	  Enable e.MMC high-speed DDR mode support.
+
 config MMC_NONREMOVABLE
 	bool "Device attached to the MMC bus is not removable"
 	depends on SDHC
