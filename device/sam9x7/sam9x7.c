@@ -349,11 +349,10 @@ void hw_init(void)
 #endif
 }
 
-#ifdef CONFIG_DATAFLASH
-
-#if defined(CONFIG_AT91_QSPI_OCTAL)
+#ifdef CONFIG_QSPI
 void at91_qspi_hw_init(void)
 {
+#if defined(CONFIG_AT91_QSPI_OCTAL)
 	const struct pio_desc qspi_pins[] = {
 		{"QSPI0_SCK", AT91C_PIN_PB(19), 0, PIO_DEFAULT, PIO_PERIPH_A},
 		{"QSPI0_CS",  AT91C_PIN_PB(20), 0, PIO_DEFAULT, PIO_PERIPH_A},
@@ -368,11 +367,20 @@ void at91_qspi_hw_init(void)
 		{"QSPI0_DQS", AT91C_PIN_PB(18), 0, PIO_DEFAULT, PIO_PERIPH_A},
 		{(char *)0, 0, 0, PIO_DEFAULT, PIO_PERIPH_A},
 	};
+#else
+	const struct pio_desc qspi_pins[] = {
+		{"QSPI0_SCK", AT91C_PIN_PB(19), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{"QSPI0_CS",  AT91C_PIN_PB(20), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{"QSPI0_IO0", AT91C_PIN_PB(21), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{"QSPI0_IO1", AT91C_PIN_PB(22), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{"QSPI0_IO2", AT91C_PIN_PB(23), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{"QSPI0_IO3", AT91C_PIN_PB(24), 0, PIO_DEFAULT, PIO_PERIPH_A},
+		{(char *)0, 0, 0, PIO_DEFAULT, PIO_PERIPH_A},
+	};
+#endif  /* #ifdef CONFIG_AT91_QSPI_OCTAL */
 	pio_configure(qspi_pins);
 }
-#endif  /* #ifdef CONFIG_AT91_QSPI_OCTAL */
-
-#endif	/* #ifdef CONFIG_DATAFLASH */
+#endif  /* #ifdef CONFIG_QSPI */
 
 #ifdef CONFIG_SDCARD
 #ifdef CONFIG_OF_LIBFDT
