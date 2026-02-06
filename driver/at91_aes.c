@@ -347,25 +347,32 @@ static int at91_aes_compute_dma(unsigned int data_width,
 	transfer_cfg_in.len = div(num_blocks, 1 << cfg.data_width);
 	xdmac_configure_transfer(&hwcfg_in, &cfg);
 
-	/* Configure DMA for AES receive */
-	hwcfg_out.cid = 1;
-	hwcfg_out.rxif = AES_XDMA_RXIF;
-	hwcfg_out.src_is_periph = 1;
-	hwcfg_out.dst_is_periph = 0;
-	cfg.incr_saddr = 0;
-	cfg.incr_daddr = 1;
-	transfer_cfg_out.saddr = (void *)(AT91C_BASE_AES + AES_ODATAR0);
-	transfer_cfg_out.daddr = (void *)output;
-	transfer_cfg_out.len = div(num_blocks, 1 << cfg.data_width);
-	xdmac_configure_transfer(&hwcfg_out, &cfg);
+	if (!is_mac) {
+		/* Configure DMA for AES receive */
+		hwcfg_out.cid = 1;
+		hwcfg_out.rxif = AES_XDMA_RXIF;
+		hwcfg_out.src_is_periph = 1;
+		hwcfg_out.dst_is_periph = 0;
+		cfg.incr_saddr = 0;
+		cfg.incr_daddr = 1;
+		transfer_cfg_out.saddr = (void *)(AT91C_BASE_AES + AES_ODATAR0);
+		transfer_cfg_out.daddr = (void *)output;
+		transfer_cfg_out.len = div(num_blocks, 1 << cfg.data_width);
+		xdmac_configure_transfer(&hwcfg_out, &cfg);
+	}
 
 	xdmac_transfer_start(&hwcfg_in, &transfer_cfg_in);
-	xdmac_transfer_start(&hwcfg_out, &transfer_cfg_out);
+	if (!is_mac)
+		xdmac_transfer_start(&hwcfg_out, &transfer_cfg_out);
 
-	ret = xdmac_transfer_wait_for_completion(&hwcfg_out);
+	if (!is_mac)
+		ret = xdmac_transfer_wait_for_completion(&hwcfg_out);
+	else
+		ret = xdmac_transfer_wait_for_completion(&hwcfg_in);
 
 	xdmac_transfer_stop(&hwcfg_in);
-	xdmac_transfer_stop(&hwcfg_out);
+	if (!is_mac)
+		xdmac_transfer_stop(&hwcfg_out);
 	return ret;
 }
 #endif
