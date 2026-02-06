@@ -42,7 +42,8 @@ struct fast_boot {
 	unsigned int page_stru;
 	unsigned int of_pagetype;
 	unsigned int of_priate;
-	unsigned int ss_cipher_key[4];
+	unsigned int ss_key_size;
+	unsigned int ss_cipher_key[8];
 	unsigned int ss_iv[4];
 	unsigned long mem_map_addr;
 };

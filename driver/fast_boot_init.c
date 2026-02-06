@@ -25,6 +25,7 @@
 #include "common.h"
 #include "hardware.h"
 #include "board.h"
+#include "aes.h"
 #include "fast_boot.h"
 #include "autoconf.h"
 
@@ -75,6 +76,21 @@ void init_fast_boot(void)
 	fast_boot_params.ss_iv[1] = CONFIG_AES_IV_WORD1;
 	fast_boot_params.ss_iv[2] = CONFIG_AES_IV_WORD2;
 	fast_boot_params.ss_iv[3] = CONFIG_AES_IV_WORD3;
+#if defined(CONFIG_AES_KEY_SIZE_128)
+	fast_boot_params.ss_key_size = AT91_AES_KEY_SIZE_128;
+#elif defined(CONFIG_AES_KEY_SIZE_192)
+	fast_boot_params.ss_key_size = AT91_AES_KEY_SIZE_192;
+	fast_boot_params.ss_cipher_key[4] = CONFIG_AES_CIPHER_KEY_WORD4;
+	fast_boot_params.ss_cipher_key[5] = CONFIG_AES_CIPHER_KEY_WORD5;
+#elif defined(CONFIG_AES_KEY_SIZE_256)
+	fast_boot_params.ss_key_size = AT91_AES_KEY_SIZE_256;
+	fast_boot_params.ss_cipher_key[4] = CONFIG_AES_CIPHER_KEY_WORD4;
+	fast_boot_params.ss_cipher_key[5] = CONFIG_AES_CIPHER_KEY_WORD5;
+	fast_boot_params.ss_cipher_key[6] = CONFIG_AES_CIPHER_KEY_WORD6;
+	fast_boot_params.ss_cipher_key[7] = CONFIG_AES_CIPHER_KEY_WORD7;
+#else
+#error "Fastboot bad AES key size"
+#endif
 #endif
 	fast_boot_init_params(&fast_boot_params);
 }

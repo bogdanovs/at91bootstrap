@@ -26,6 +26,7 @@ menu "Fast Boot Setup"
 
 config FASTBOOT_SECURE_ENABLE
 	bool "Enable AES Secure mode for Snapshot Image"
+	depends on SECURE
 	default n
 	help
 	  Enable Encrypt|decrypt to write/load snapshot image.

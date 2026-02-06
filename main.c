@@ -111,7 +111,7 @@ int main(void)
 #ifdef CONFIG_LOAD_SW
 	init_load_image(&image);
 
-#if defined(CONFIG_SECURE) && !defined(CONFIG_FASTBOOT_SECURE_ENABLE)
+#if defined(CONFIG_SECURE)
 	image.dest -= sizeof(at91_secure_header_t);
 #endif
 
@@ -137,7 +137,7 @@ int main(void)
 #endif
 
 #endif
-#if defined(CONFIG_SECURE) && !defined(CONFIG_FASTBOOT_SECURE_ENABLE)
+#if defined(CONFIG_SECURE)
 	if (!ret)
 		ret = secure_check(&image);
 	image.dest += sizeof(at91_secure_header_t);
